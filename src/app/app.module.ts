@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, CustomAdapter, CustomDateParserFormatter } from './app.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,10 @@ import { AppComponent } from './app.component';
     FormsModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: NgbDateAdapter, useClass: CustomAdapter},
+    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}
+  ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
